@@ -88,6 +88,8 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entidades.vb" />
+    <Compile Include="Funciones.vb" />
     <Compile Include="Main.vb">
       <SubType>Form</SubType>
     </Compile>

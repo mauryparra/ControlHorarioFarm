@@ -84,9 +84,9 @@ Partial Class Main
         'ButtonMarcar
         '
         Me.ButtonMarcar.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonMarcar.Location = New System.Drawing.Point(197, 59)
+        Me.ButtonMarcar.Location = New System.Drawing.Point(217, 60)
         Me.ButtonMarcar.Name = "ButtonMarcar"
-        Me.ButtonMarcar.Size = New System.Drawing.Size(166, 57)
+        Me.ButtonMarcar.Size = New System.Drawing.Size(166, 54)
         Me.ButtonMarcar.TabIndex = 3
         Me.ButtonMarcar.Text = "&Marcar"
         Me.ButtonMarcar.UseVisualStyleBackColor = True
@@ -115,17 +115,18 @@ Partial Class Main
         '
         Me.TextBoxNombre.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.TextBoxNombre.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
+        Me.TextBoxNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TextBoxNombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxNombre.Location = New System.Drawing.Point(12, 32)
         Me.TextBoxNombre.Name = "TextBoxNombre"
-        Me.TextBoxNombre.Size = New System.Drawing.Size(158, 26)
+        Me.TextBoxNombre.Size = New System.Drawing.Size(199, 26)
         Me.TextBoxNombre.TabIndex = 0
         '
         'LabelHora
         '
         Me.LabelHora.AutoSize = True
         Me.LabelHora.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelHora.Location = New System.Drawing.Point(205, 16)
+        Me.LabelHora.Location = New System.Drawing.Point(225, 16)
         Me.LabelHora.Name = "LabelHora"
         Me.LabelHora.Size = New System.Drawing.Size(151, 37)
         Me.LabelHora.TabIndex = 9
@@ -174,7 +175,7 @@ Partial Class Main
         Me.TextBoxPass.Location = New System.Drawing.Point(12, 85)
         Me.TextBoxPass.Name = "TextBoxPass"
         Me.TextBoxPass.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.TextBoxPass.Size = New System.Drawing.Size(158, 26)
+        Me.TextBoxPass.Size = New System.Drawing.Size(199, 26)
         Me.TextBoxPass.TabIndex = 1
         '
         'ButtonConfig

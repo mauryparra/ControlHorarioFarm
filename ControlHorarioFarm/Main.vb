@@ -3,6 +3,8 @@
 
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles Me.Load
         'MySQL.TestCon()
+        TextBoxNombre.AutoCompleteCustomSource = FillAutoCompleteEmpleados()
+
     End Sub
 
     Private Sub Timer_Tick(sender As Object, e As EventArgs) Handles Timer.Tick
