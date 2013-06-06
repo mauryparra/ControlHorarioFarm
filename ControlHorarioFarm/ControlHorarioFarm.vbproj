@@ -88,6 +88,24 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Opciones.Designer.vb">
+      <DependentUpon>Opciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Opciones.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PasswordDialog.Designer.vb">
+      <DependentUpon>PasswordDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PasswordDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectEmpleado.Designer.vb">
+      <DependentUpon>SelectEmpleado.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SelectEmpleado.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Entidades.vb" />
     <Compile Include="Funciones.vb" />
     <Compile Include="Main.vb">
@@ -115,6 +133,15 @@
     <Compile Include="MySQL.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Opciones.resx">
+      <DependentUpon>Opciones.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PasswordDialog.resx">
+      <DependentUpon>PasswordDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectEmpleado.resx">
+      <DependentUpon>SelectEmpleado.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.vb</DependentUpon>
     </EmbeddedResource>
