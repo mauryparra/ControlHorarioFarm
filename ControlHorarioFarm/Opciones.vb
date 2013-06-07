@@ -1,5 +1,4 @@
 ﻿Public Class Opciones
-    Dim sucursales As New Collection
 
     Private Sub Opciones_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         TextBoxActualPass.Clear()
@@ -8,21 +7,13 @@
     End Sub
 
     Private Sub Opciones_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If My.Settings.Contraseña = "" Then
-            MessageBox.Show("Por favor configure una contraseña")
-            TextBoxActualPass.Enabled = False
-        Else
-            If Not PasswordDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
-                Me.Close()
-            End If
-            TextBoxActualPass.Enabled = True
-        End If
-        sucursales = MySQL.CargarSuc()
-        For Each suc As Entidades.Sucursales In sucursales
-            ComboBoxSuc.Items.Add(suc.ID & " | " & suc.Nombre)
-        Next
+        MySQL.CargarSuc()
+        ComboBoxSuc.DataSource = Main.dtSucursales.DefaultView
+        ComboBoxSuc.DisplayMember = "Nombre"
+        ComboBoxSuc.ValueMember = "ID"
+
         If Not My.Settings.Sucursal = "" Then
-            ComboBoxSuc.SelectedItem = My.Settings.Sucursal
+            ComboBoxSuc.SelectedValue = My.Settings.Sucursal
         End If
     End Sub
 
@@ -32,7 +23,7 @@
                 If My.Settings.Contraseña = Encrypt(TextBoxActualPass.Text) Then
                     If TextBoxNewPass.Text = TextBoxNewPass2.Text Then
                         My.Settings.Contraseña = Encrypt(TextBoxNewPass.Text)
-                        My.Settings.Sucursal = ComboBoxSuc.SelectedItem
+                        My.Settings.Sucursal = ComboBoxSuc.SelectedValue
                         My.Settings.Save()
                         Me.Close()
                     Else
@@ -49,7 +40,7 @@
             Else
                 If TextBoxNewPass.Text = TextBoxNewPass2.Text Then
                     My.Settings.Contraseña = Encrypt(TextBoxNewPass.Text)
-                    My.Settings.Sucursal = ComboBoxSuc.SelectedItem
+                    My.Settings.Sucursal = ComboBoxSuc.SelectedValue
                     My.Settings.Save()
                     Me.Close()
                 Else
@@ -60,7 +51,7 @@
                 End If
             End If
         Else
-            My.Settings.Sucursal = ComboBoxSuc.SelectedItem
+            My.Settings.Sucursal = ComboBoxSuc.SelectedValue
             My.Settings.Save()
             Me.Close()
         End If

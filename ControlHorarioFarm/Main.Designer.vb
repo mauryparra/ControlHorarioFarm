@@ -24,6 +24,8 @@ Partial Class Main
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.SplitContainer = New System.Windows.Forms.SplitContainer()
+        Me.LabelTipo = New System.Windows.Forms.Label()
+        Me.ComboBoxTipo = New System.Windows.Forms.ComboBox()
         Me.TextBoxPass = New System.Windows.Forms.TextBox()
         Me.LabelPassword = New System.Windows.Forms.Label()
         Me.ButtonConfig = New System.Windows.Forms.Button()
@@ -35,13 +37,12 @@ Partial Class Main
         Me.LabelHora = New System.Windows.Forms.Label()
         Me.ComboBoxTurnos = New System.Windows.Forms.ComboBox()
         Me.DataGridViewReg = New System.Windows.Forms.DataGridView()
+        Me.Timer = New System.Windows.Forms.Timer(Me.components)
         Me.Tipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Hora = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Sucursal = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Turno = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Timer = New System.Windows.Forms.Timer(Me.components)
-        Me.LabelTipo = New System.Windows.Forms.Label()
-        Me.ComboBoxTipo = New System.Windows.Forms.ComboBox()
+        Me.TurnoID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.SplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer.Panel1.SuspendLayout()
         Me.SplitContainer.Panel2.SuspendLayout()
@@ -78,6 +79,28 @@ Partial Class Main
         Me.SplitContainer.Size = New System.Drawing.Size(560, 378)
         Me.SplitContainer.SplitterDistance = 163
         Me.SplitContainer.TabIndex = 0
+        '
+        'LabelTipo
+        '
+        Me.LabelTipo.AutoSize = True
+        Me.LabelTipo.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelTipo.Location = New System.Drawing.Point(389, 83)
+        Me.LabelTipo.Name = "LabelTipo"
+        Me.LabelTipo.Size = New System.Drawing.Size(36, 13)
+        Me.LabelTipo.TabIndex = 11
+        Me.LabelTipo.Text = "Tipo:"
+        '
+        'ComboBoxTipo
+        '
+        Me.ComboBoxTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBoxTipo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ComboBoxTipo.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.ComboBoxTipo.FormattingEnabled = True
+        Me.ComboBoxTipo.Items.AddRange(New Object() {"Entrada", "Salida"})
+        Me.ComboBoxTipo.Location = New System.Drawing.Point(392, 99)
+        Me.ComboBoxTipo.Name = "ComboBoxTipo"
+        Me.ComboBoxTipo.Size = New System.Drawing.Size(158, 28)
+        Me.ComboBoxTipo.TabIndex = 7
         '
         'TextBoxPass
         '
@@ -149,8 +172,6 @@ Partial Class Main
         '
         'TextBoxNombre
         '
-        Me.TextBoxNombre.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
-        Me.TextBoxNombre.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.TextBoxNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TextBoxNombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxNombre.Location = New System.Drawing.Point(12, 48)
@@ -183,7 +204,7 @@ Partial Class Main
         Me.DataGridViewReg.AllowUserToAddRows = False
         Me.DataGridViewReg.AllowUserToDeleteRows = False
         Me.DataGridViewReg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewReg.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Tipo, Me.Hora, Me.Sucursal, Me.Turno})
+        Me.DataGridViewReg.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Tipo, Me.Hora, Me.Sucursal, Me.Turno, Me.TurnoID})
         Me.DataGridViewReg.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewReg.Location = New System.Drawing.Point(0, 0)
         Me.DataGridViewReg.Name = "DataGridViewReg"
@@ -191,12 +212,17 @@ Partial Class Main
         Me.DataGridViewReg.Size = New System.Drawing.Size(560, 211)
         Me.DataGridViewReg.TabIndex = 0
         '
+        'Timer
+        '
+        Me.Timer.Enabled = True
+        Me.Timer.Interval = 1000
+        '
         'Tipo
         '
         Me.Tipo.HeaderText = "Tipo"
         Me.Tipo.Name = "Tipo"
         Me.Tipo.ReadOnly = True
-        Me.Tipo.Width = 65
+        Me.Tipo.Width = 50
         '
         'Hora
         '
@@ -218,32 +244,12 @@ Partial Class Main
         Me.Turno.ReadOnly = True
         Me.Turno.Width = 150
         '
-        'Timer
+        'TurnoID
         '
-        Me.Timer.Enabled = True
-        Me.Timer.Interval = 1000
-        '
-        'LabelTipo
-        '
-        Me.LabelTipo.AutoSize = True
-        Me.LabelTipo.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelTipo.Location = New System.Drawing.Point(389, 83)
-        Me.LabelTipo.Name = "LabelTipo"
-        Me.LabelTipo.Size = New System.Drawing.Size(36, 13)
-        Me.LabelTipo.TabIndex = 11
-        Me.LabelTipo.Text = "Tipo:"
-        '
-        'ComboBoxTipo
-        '
-        Me.ComboBoxTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBoxTipo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ComboBoxTipo.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.ComboBoxTipo.FormattingEnabled = True
-        Me.ComboBoxTipo.Items.AddRange(New Object() {"Entrada", "Salida"})
-        Me.ComboBoxTipo.Location = New System.Drawing.Point(392, 99)
-        Me.ComboBoxTipo.Name = "ComboBoxTipo"
-        Me.ComboBoxTipo.Size = New System.Drawing.Size(158, 28)
-        Me.ComboBoxTipo.TabIndex = 7
+        Me.TurnoID.HeaderText = "Turno ID"
+        Me.TurnoID.Name = "TurnoID"
+        Me.TurnoID.ReadOnly = True
+        Me.TurnoID.Width = 60
         '
         'Main
         '
@@ -278,11 +284,12 @@ Partial Class Main
     Friend WithEvents Timer As System.Windows.Forms.Timer
     Friend WithEvents TextBoxPass As System.Windows.Forms.TextBox
     Friend WithEvents LabelPassword As System.Windows.Forms.Label
+    Friend WithEvents LabelTipo As System.Windows.Forms.Label
+    Friend WithEvents ComboBoxTipo As System.Windows.Forms.ComboBox
     Friend WithEvents Tipo As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Hora As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Sucursal As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Turno As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents LabelTipo As System.Windows.Forms.Label
-    Friend WithEvents ComboBoxTipo As System.Windows.Forms.ComboBox
+    Friend WithEvents TurnoID As System.Windows.Forms.DataGridViewTextBoxColumn
 
 End Class

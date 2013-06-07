@@ -9,6 +9,7 @@ Public Class PasswordDialog
             Me.Close()
         Else
             MessageBox.Show("Contraseña Incorrecta")
+            TextBoxPass.Clear()
             TextBoxPass.Focus()
         End If
 

@@ -3,7 +3,7 @@
     Private Sub SelectEmpleado_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Height = 118
         For Each empleado As Entidades.Empleados In Main.empleados
-            If (empleado.Nombre + empleado.Apellido).Contains(Main.TextBoxNombre.Text) Then
+            If (empleado.Nombre + " " + empleado.Apellido).Contains(Main.TextBoxNombre.Text) Then
                 Dim row As New DataGridViewRow
                 With row
                     .CreateCells(DataGridViewEmpleados)
