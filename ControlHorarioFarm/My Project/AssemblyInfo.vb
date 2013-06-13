@@ -8,7 +8,7 @@ Imports System.Runtime.InteropServices
 
 ' Revisar los valores de los atributos del ensamblado
 
-<Assembly: AssemblyTitle("Control Horario Farmacias")> 
+<Assembly: AssemblyTitle("ControlHorarioFarm")> 
 <Assembly: AssemblyDescription("")> 
 <Assembly: AssemblyCompany("Microsoft")> 
 <Assembly: AssemblyProduct("ControlHorarioFarm")> 
@@ -18,7 +18,7 @@ Imports System.Runtime.InteropServices
 <Assembly: ComVisible(False)>
 
 'El siguiente GUID sirve como identificador de typelib si este proyecto se expone a COM
-<Assembly: Guid("4f0d1723-fc17-42f0-8422-1e33bef12760")> 
+<Assembly: Guid("7c3aba0e-1c3c-48e1-9cce-a621a1c4ac97")> 
 
 ' La información de versión de un ensamblado consta de los cuatro valores siguientes:
 '

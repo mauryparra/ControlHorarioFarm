@@ -24,3 +24,4 @@ Public Class PasswordDialog
         TextBoxPass.Clear()
     End Sub
 End Class
+

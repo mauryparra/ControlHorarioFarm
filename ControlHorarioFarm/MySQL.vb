@@ -168,7 +168,7 @@ Module MySQL
             rowIndex = Main.ComboBoxTurnos.SelectedIndex
             com.Parameters.AddWithValue("id_suc", Main.dtTurnos.DefaultView.Item(rowIndex).Item(0))
             com.Parameters.AddWithValue("id_estado", 1) ' VER
-            
+
             con.Open()
             com.ExecuteNonQuery()
             MessageBox.Show(Main.ComboBoxTipo.SelectedItem + " Registrada!")

@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7C9B5DD5-5FFF-468C-BEFA-23C3FF0EF3FA}</ProjectGuid>
+    <ProjectGuid>{9D940DBB-4E60-4A70-88F6-92005F0E8066}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <StartupObject>ControlHorarioFarm.My.MyApplication</StartupObject>
     <RootNamespace>ControlHorarioFarm</RootNamespace>
     <AssemblyName>ControlHorarioFarm</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <PublishUrl>D:\Users\Sistemas2\Documents\Instaladores Programas Visual\Control Horarios Farmacias\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -25,7 +27,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ProductName>Control Horario Farmacias</ProductName>
     <PublisherName>Farmanor</PublisherName>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -64,10 +66,10 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+    <ApplicationIcon>Resources\ControlHorarioFarm.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>1B79280785596B1EF08D68D02D6BE347CADE9897</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>79287373EAEAB915D4392815AD05586EB56BA874</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>ControlHorarioFarm_ClaveTemporal.pfx</ManifestKeyFile>
@@ -76,10 +78,13 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\ControlHorarioFarm.ico</ApplicationIcon>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -103,27 +108,8 @@
     <Import Include="System.Windows.Forms" />
     <Import Include="System.Linq" />
     <Import Include="System.Xml.Linq" />
-    <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Opciones.Designer.vb">
-      <DependentUpon>Opciones.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Opciones.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PasswordDialog.Designer.vb">
-      <DependentUpon>PasswordDialog.vb</DependentUpon>
-    </Compile>
-    <Compile Include="PasswordDialog.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SelectEmpleado.Designer.vb">
-      <DependentUpon>SelectEmpleado.vb</DependentUpon>
-    </Compile>
-    <Compile Include="SelectEmpleado.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="Entidades.vb" />
     <Compile Include="Funciones.vb" />
     <Compile Include="Main.vb">
@@ -149,17 +135,26 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="MySQL.vb" />
+    <Compile Include="Opciones.Designer.vb">
+      <DependentUpon>Opciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Opciones.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PasswordDialog.Designer.vb">
+      <DependentUpon>PasswordDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PasswordDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectEmpleado.Designer.vb">
+      <DependentUpon>SelectEmpleado.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SelectEmpleado.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Opciones.resx">
-      <DependentUpon>Opciones.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PasswordDialog.resx">
-      <DependentUpon>PasswordDialog.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectEmpleado.resx">
-      <DependentUpon>SelectEmpleado.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.vb</DependentUpon>
     </EmbeddedResource>
@@ -171,6 +166,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="ControlHorarioFarm_ClaveTemporal.pfx" />
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
@@ -182,12 +178,17 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+    <None Include="Resources\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\ControlHorarioFarm.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.5 %28x86 y x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4 %28x86 y x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -200,10 +201,11 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\ControlHorarioFarm.ico" />
-    <Content Include="Resources\settings.png" />
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

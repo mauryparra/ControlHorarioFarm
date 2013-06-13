@@ -26,7 +26,7 @@
             Dim hora As TimeSpan = TimeOfDay.TimeOfDay
             Dim entrada As TimeSpan = TimeSpan.Parse(row.Item("Entrada").ToString.Substring(11))
             Dim salida As TimeSpan = TimeSpan.Parse(row.Item("Salida").ToString.Substring(11))
-            
+
             Dim margenEntrada As TimeSpan = TimeSpan.Parse("02:00:00")
             Dim margenSalida As TimeSpan = TimeSpan.Parse("00:30:00")
 
