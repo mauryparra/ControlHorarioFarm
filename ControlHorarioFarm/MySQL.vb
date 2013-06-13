@@ -37,7 +37,7 @@ Module MySQL
         Return empleados
     End Function
 
-    Public Sub CargarSuc()
+    Public Sub cargarSuc()
         Try
             Main.dtSucursales.Rows.Clear()
             com = New OdbcCommand("SELECT * FROM sucur ", con)
@@ -120,9 +120,8 @@ Module MySQL
                 com = New OdbcCommand("SELECT * FROM turnos WHERE id_suc = ? ", con)
                 com.Parameters.AddWithValue("ID_SUC", My.Settings.Sucursal)
             Else
-                com = New OdbcCommand("SELECT * FROM turnos WHERE id_suc = ? OR id_turno = ? ", con)
-                com.Parameters.AddWithValue("ID_SUC", My.Settings.Sucursal)
-                com.Parameters.AddWithValue("ID_SUC", Main.DataGridViewReg.Rows(0).Cells(4).Value)
+                com = New OdbcCommand("SELECT * FROM turnos WHERE id_turno = ? ", con)
+                com.Parameters.AddWithValue("ID_Turno", turnoAbierto)
             End If
 
             con.Open()
@@ -173,6 +172,7 @@ Module MySQL
             con.Open()
             com.ExecuteNonQuery()
             MessageBox.Show(Main.ComboBoxTipo.SelectedItem + " Registrada!")
+            Application.Exit()
 
         Catch ex As Exception
             MessageBox.Show(ex.Message)

@@ -23,6 +23,7 @@ Partial Class Main
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main))
         Me.SplitContainer = New System.Windows.Forms.SplitContainer()
         Me.LabelTipo = New System.Windows.Forms.Label()
         Me.ComboBoxTipo = New System.Windows.Forms.ComboBox()
@@ -37,12 +38,12 @@ Partial Class Main
         Me.LabelHora = New System.Windows.Forms.Label()
         Me.ComboBoxTurnos = New System.Windows.Forms.ComboBox()
         Me.DataGridViewReg = New System.Windows.Forms.DataGridView()
-        Me.Timer = New System.Windows.Forms.Timer(Me.components)
         Me.Tipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Hora = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Sucursal = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Turno = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TurnoID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Timer = New System.Windows.Forms.Timer(Me.components)
         CType(Me.SplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer.Panel1.SuspendLayout()
         Me.SplitContainer.Panel2.SuspendLayout()
@@ -209,13 +210,9 @@ Partial Class Main
         Me.DataGridViewReg.Location = New System.Drawing.Point(0, 0)
         Me.DataGridViewReg.Name = "DataGridViewReg"
         Me.DataGridViewReg.ReadOnly = True
+        Me.DataGridViewReg.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DataGridViewReg.Size = New System.Drawing.Size(560, 211)
         Me.DataGridViewReg.TabIndex = 0
-        '
-        'Timer
-        '
-        Me.Timer.Enabled = True
-        Me.Timer.Interval = 1000
         '
         'Tipo
         '
@@ -251,6 +248,11 @@ Partial Class Main
         Me.TurnoID.ReadOnly = True
         Me.TurnoID.Width = 60
         '
+        'Timer
+        '
+        Me.Timer.Enabled = True
+        Me.Timer.Interval = 1000
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -258,6 +260,7 @@ Partial Class Main
         Me.ClientSize = New System.Drawing.Size(560, 378)
         Me.Controls.Add(Me.SplitContainer)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.Name = "Main"

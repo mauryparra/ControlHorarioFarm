@@ -62,18 +62,24 @@
             If empleado.Pass = Encrypt(TextBoxPass.Text) Then
                 TextBoxPass.Enabled = False
                 cargarHistorial(DataGridViewReg)
-                MySQL.cargarTurnos()
+                dtTurnos.Rows.Clear()
                 ComboBoxTurnos.DataSource = dtTurnos.DefaultView
                 ComboBoxTurnos.DisplayMember = "Descrip"
                 ComboBoxTurnos.ValueMember = "ID_Turno"
                 If DataGridViewReg.Rows.Count > 0 Then
                     If DataGridViewReg.Rows(0).Cells(0).Value = "Entrada" Then
                         ComboBoxTipo.SelectedItem = "Salida"
+                        MySQL.cargarTurnos(DataGridViewReg.Rows(0).Cells(4).Value)
+                        ComboBoxTurnos.SelectedIndex = 0
                     Else
                         ComboBoxTipo.SelectedItem = "Entrada"
+                        MySQL.cargarTurnos()
+                        Funciones.filtrarTurnos(dtTurnos)
                     End If
                 Else
                     ComboBoxTipo.SelectedItem = "Entrada"
+                    MySQL.cargarTurnos()
+                    Funciones.filtrarTurnos(dtTurnos)
                 End If
                 ButtonMarcar.Enabled = True
                 ButtonMarcar.Focus()
@@ -93,5 +99,6 @@
 
     Private Sub ButtonMarcar_Click(sender As Object, e As EventArgs) Handles ButtonMarcar.Click
         MySQL.marcarHorario()
+
     End Sub
 End Class
