@@ -23,7 +23,6 @@ Partial Class Main
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main))
         Me.SplitContainer = New System.Windows.Forms.SplitContainer()
         Me.LabelTipo = New System.Windows.Forms.Label()
         Me.ComboBoxTipo = New System.Windows.Forms.ComboBox()
@@ -260,7 +259,6 @@ Partial Class Main
         Me.ClientSize = New System.Drawing.Size(560, 378)
         Me.Controls.Add(Me.SplitContainer)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.Name = "Main"
