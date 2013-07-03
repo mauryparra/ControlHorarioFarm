@@ -22,6 +22,7 @@ Partial Class Opciones
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Opciones))
         Me.LabelSuc = New System.Windows.Forms.Label()
         Me.ComboBoxSuc = New System.Windows.Forms.ComboBox()
         Me.LabelActualPass = New System.Windows.Forms.Label()
@@ -33,6 +34,8 @@ Partial Class Opciones
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.Cancel_Button = New System.Windows.Forms.Button()
         Me.OK_Button = New System.Windows.Forms.Button()
+        Me.LabelVersion = New System.Windows.Forms.Label()
+        Me.TextBoxVersion = New System.Windows.Forms.TextBox()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -40,7 +43,7 @@ Partial Class Opciones
         '
         Me.LabelSuc.AutoSize = True
         Me.LabelSuc.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelSuc.Location = New System.Drawing.Point(76, 49)
+        Me.LabelSuc.Location = New System.Drawing.Point(76, 69)
         Me.LabelSuc.Name = "LabelSuc"
         Me.LabelSuc.Size = New System.Drawing.Size(75, 20)
         Me.LabelSuc.TabIndex = 2
@@ -51,7 +54,7 @@ Partial Class Opciones
         Me.ComboBoxSuc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBoxSuc.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBoxSuc.FormattingEnabled = True
-        Me.ComboBoxSuc.Location = New System.Drawing.Point(157, 46)
+        Me.ComboBoxSuc.Location = New System.Drawing.Point(157, 66)
         Me.ComboBoxSuc.Name = "ComboBoxSuc"
         Me.ComboBoxSuc.Size = New System.Drawing.Size(149, 28)
         Me.ComboBoxSuc.TabIndex = 3
@@ -149,11 +152,32 @@ Partial Class Opciones
         Me.OK_Button.TabIndex = 0
         Me.OK_Button.Text = "Aceptar"
         '
+        'LabelVersion
+        '
+        Me.LabelVersion.AutoSize = True
+        Me.LabelVersion.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelVersion.Location = New System.Drawing.Point(76, 15)
+        Me.LabelVersion.Name = "LabelVersion"
+        Me.LabelVersion.Size = New System.Drawing.Size(67, 20)
+        Me.LabelVersion.TabIndex = 11
+        Me.LabelVersion.Text = "Versión:"
+        '
+        'TextBoxVersion
+        '
+        Me.TextBoxVersion.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxVersion.Location = New System.Drawing.Point(157, 12)
+        Me.TextBoxVersion.Name = "TextBoxVersion"
+        Me.TextBoxVersion.ReadOnly = True
+        Me.TextBoxVersion.Size = New System.Drawing.Size(149, 26)
+        Me.TextBoxVersion.TabIndex = 12
+        '
         'Opciones
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(326, 262)
+        Me.Controls.Add(Me.TextBoxVersion)
+        Me.Controls.Add(Me.LabelVersion)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.TextBoxNewPass2)
         Me.Controls.Add(Me.TextBoxNewPass)
@@ -164,6 +188,7 @@ Partial Class Opciones
         Me.Controls.Add(Me.ComboBoxSuc)
         Me.Controls.Add(Me.LabelSuc)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "Opciones"
         Me.Text = "Opciones"
@@ -183,4 +208,6 @@ Partial Class Opciones
     Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents Cancel_Button As System.Windows.Forms.Button
     Friend WithEvents OK_Button As System.Windows.Forms.Button
+    Friend WithEvents LabelVersion As System.Windows.Forms.Label
+    Friend WithEvents TextBoxVersion As System.Windows.Forms.TextBox
 End Class

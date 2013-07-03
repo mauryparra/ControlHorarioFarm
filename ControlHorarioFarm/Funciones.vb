@@ -17,6 +17,24 @@
         Return EncryptedPass
     End Function
 
+    Public Function CheckSalida(ByRef dgv As DataGridView) As Boolean
+        Dim cantHoras As Integer = CInt(Main.dtTurnos.Rows(0).Item("CantHoras").ToString.Substring(11, 2))
+        Dim entrada As Date = dgv.Rows(0).Cells("Hora").Value
+        Dim horaSalida As TimeSpan = TimeSpan.Parse(Main.dtTurnos.Rows(0).Item("Salida").ToString.Substring(11))
+        Dim fechaSalida As Date = Date.Parse(entrada.Date & " " & horaSalida.ToString)
+        Dim hora As Date = DateAndTime.Now
+
+        If DateAndTime.DateDiff(DateInterval.Hour, entrada, hora) > (cantHoras + 2) Then ' Horas del Turno más 2 extra
+            If MessageBox.Show("¿Desea cerrar el turno anterior?", "Turno sin Cerrar Detectado!", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                MySQL.cortarHorario(Main.dtTurnos.Rows(0).Item("ID_Turno"), fechaSalida)
+                Return True
+            Else
+                Return False
+            End If
+        End If
+        Return False
+    End Function
+
     Public Sub filtrarTurnos(ByRef dt As DataTable)
         ' Filtra los turnos que se muestran en el combobox según la hora del día
         Dim remover As New List(Of DataRow)

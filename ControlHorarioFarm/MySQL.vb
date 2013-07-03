@@ -156,8 +156,8 @@ Module MySQL
 
     Public Sub marcarHorario()
         Try
-            com = New OdbcCommand("INSERT INTO ingsal (id_op, turno, fechah, tipo, id_suc, id_estado) " & _
-                                  "VALUES ( ?, ?, ?, ?, ?, ? ) ", con)
+            com = New OdbcCommand("INSERT INTO ingsal (id_op, turno, fechah, tipo, id_suc, id_estado, observacion) " & _
+                                  "VALUES ( ?, ?, ?, ?, ?, ?, ? ) ", con)
             com.Parameters.AddWithValue("id_op", Main.empleado.ID)
             com.Parameters.AddWithValue("turno", Main.ComboBoxTurnos.SelectedValue)
             com.Parameters.AddWithValue("fechah", System.DateTime.Now)
@@ -168,9 +168,11 @@ Module MySQL
             rowIndex = Main.ComboBoxTurnos.SelectedIndex
             com.Parameters.AddWithValue("id_suc", Main.dtTurnos.DefaultView.Item(rowIndex).Item(0))
             com.Parameters.AddWithValue("id_estado", 1) ' VER
+            com.Parameters.AddWithValue("observacion", "CHF v" & My.Application.Info.Version.ToString)
 
             con.Open()
             com.ExecuteNonQuery()
+            con.Close()
             MessageBox.Show(Main.ComboBoxTipo.SelectedItem + " Registrada!")
             Application.Exit()
 
@@ -183,13 +185,41 @@ Module MySQL
         End Try
     End Sub
 
+    Public Sub cortarHorario(ByVal turnoabierto As Integer, ByVal salida As Date)
+        Try
+            com = New OdbcCommand("INSERT INTO ingsal (id_op, turno, fechah, tipo, id_suc, id_estado, observacion) " & _
+                                  "VALUES ( ?, ?, ?, ?, ?, ?, ? ) ", con)
+            com.Parameters.AddWithValue("id_op", Main.empleado.ID)
+            com.Parameters.AddWithValue("turno", turnoabierto)
+            com.Parameters.AddWithValue("fechah", salida)
+            com.Parameters.AddWithValue("tipo", Main.ComboBoxTipo.SelectedIndex + 1)
+
+            ' Obtener id_suc del datatable a partir del turno seleccionado
+            Dim rowIndex As Integer
+            rowIndex = Main.ComboBoxTurnos.SelectedIndex
+            com.Parameters.AddWithValue("id_suc", Main.dtTurnos.DefaultView.Item(rowIndex).Item(0))
+            com.Parameters.AddWithValue("id_estado", 1) ' VER
+            com.Parameters.AddWithValue("observacion", "AUTO CHF v" & My.Application.Info.Version.ToString)
+
+            con.Open()
+            com.ExecuteNonQuery()
+            con.Close()
+            MessageBox.Show("Turno Cerrado Automaticamente!")
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        Finally
+            If con.State = ConnectionState.Open Then
+                con.Close()
+            End If
+        End Try
+    End Sub
+
     Public Sub testCon()
         Try
             con.Open()
-            MessageBox.Show("Conectado")
             con.Close()
         Catch ex As Exception
-            MessageBox.Show(ex.Message)
+            MessageBox.Show("No se puede conectar con la Base de Datos. " & ex.Message)
         Finally
             con.Close()
         End Try

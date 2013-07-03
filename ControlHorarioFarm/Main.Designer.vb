@@ -23,6 +23,7 @@ Partial Class Main
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main))
         Me.SplitContainer = New System.Windows.Forms.SplitContainer()
         Me.LabelTipo = New System.Windows.Forms.Label()
         Me.ComboBoxTipo = New System.Windows.Forms.ComboBox()
@@ -93,7 +94,7 @@ Partial Class Main
         'ComboBoxTipo
         '
         Me.ComboBoxTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBoxTipo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ComboBoxTipo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBoxTipo.ForeColor = System.Drawing.SystemColors.WindowText
         Me.ComboBoxTipo.FormattingEnabled = True
         Me.ComboBoxTipo.Items.AddRange(New Object() {"Entrada", "Salida"})
@@ -123,7 +124,7 @@ Partial Class Main
         '
         'ButtonConfig
         '
-        Me.ButtonConfig.Image = Global.ControlHorarioFarm.My.Resources.Resources.settings
+        Me.ButtonConfig.Image = Global.ControlHorarioFarm.My.Resources.Resources.Customize
         Me.ButtonConfig.Location = New System.Drawing.Point(339, 106)
         Me.ButtonConfig.Name = "ButtonConfig"
         Me.ButtonConfig.Size = New System.Drawing.Size(44, 44)
@@ -192,7 +193,7 @@ Partial Class Main
         'ComboBoxTurnos
         '
         Me.ComboBoxTurnos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBoxTurnos.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ComboBoxTurnos.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBoxTurnos.FormattingEnabled = True
         Me.ComboBoxTurnos.Location = New System.Drawing.Point(392, 46)
         Me.ComboBoxTurnos.Name = "ComboBoxTurnos"
@@ -259,6 +260,7 @@ Partial Class Main
         Me.ClientSize = New System.Drawing.Size(560, 378)
         Me.Controls.Add(Me.SplitContainer)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.Name = "Main"

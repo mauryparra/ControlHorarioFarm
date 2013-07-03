@@ -5,6 +5,7 @@
     Public dtSucursales As New DataTable("Sucursales")
 
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles Me.Load
+        MySQL.testCon()
         ButtonMarcar.Enabled = False
         empleados = MySQL.CargarEmpleados()
         With dtSucursales
@@ -69,15 +70,26 @@
                 If DataGridViewReg.Rows.Count > 0 Then
                     If DataGridViewReg.Rows(0).Cells(0).Value = "Entrada" Then
                         ComboBoxTipo.SelectedItem = "Salida"
+                        Me.BackColor = Color.IndianRed
                         MySQL.cargarTurnos(DataGridViewReg.Rows(0).Cells(4).Value)
                         ComboBoxTurnos.SelectedIndex = 0
+
+                        If Funciones.CheckSalida(DataGridViewReg) = True Then
+                            MySQL.cargarHistorial(DataGridViewReg)    ' Si cerro automaticamente
+                            ComboBoxTipo.SelectedItem = "Entrada"
+                            Me.BackColor = Color.Aquamarine
+                            MySQL.cargarTurnos()
+                            Funciones.filtrarTurnos(dtTurnos)
+                        End If
                     Else
                         ComboBoxTipo.SelectedItem = "Entrada"
+                        Me.BackColor = Color.Aquamarine
                         MySQL.cargarTurnos()
                         Funciones.filtrarTurnos(dtTurnos)
                     End If
                 Else
                     ComboBoxTipo.SelectedItem = "Entrada"
+                    Me.BackColor = Color.Aquamarine
                     MySQL.cargarTurnos()
                     Funciones.filtrarTurnos(dtTurnos)
                 End If

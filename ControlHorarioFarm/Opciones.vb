@@ -7,7 +7,9 @@
     End Sub
 
     Private Sub Opciones_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        MySQL.CargarSuc()
+        TextBoxVersion.Text = My.Application.Info.Version.ToString
+
+        MySQL.cargarSuc()
         ComboBoxSuc.DataSource = Main.dtSucursales.DefaultView
         ComboBoxSuc.DisplayMember = "Nombre"
         ComboBoxSuc.ValueMember = "ID"
