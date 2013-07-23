@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Revisar los valores de los atributos del ensamblado
 
-<Assembly: AssemblyTitle("ControlHorarioFarm")> 
+<Assembly: AssemblyTitle("Control Horario Farmacias")> 
 <Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("Microsoft")> 
-<Assembly: AssemblyProduct("ControlHorarioFarm")> 
-<Assembly: AssemblyCopyright("Copyright © Microsoft 2013")> 
+<Assembly: AssemblyCompany("Farmanor")> 
+<Assembly: AssemblyProduct("Control Horario Farmacias")> 
+<Assembly: AssemblyCopyright("Copyright © Farmanor 2013")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' mediante el asterisco ('*'), como se muestra a continuación:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.0.0.6")> 
-<Assembly: AssemblyFileVersion("1.0.0.6")> 
+<Assembly: AssemblyVersion("1.0.0.8")> 
+<Assembly: AssemblyFileVersion("1.0.0.8")> 

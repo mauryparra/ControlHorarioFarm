@@ -6,6 +6,13 @@
 
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles Me.Load
         MySQL.testCon()
+
+        ' Si se actualiza la aplicación, actualiza My.Settings con el archivo de la version anterior
+        If My.Settings.UpgradeRequired Then
+            My.Settings.Upgrade()
+            My.Settings.UpgradeRequired = False
+        End If
+
         ButtonMarcar.Enabled = False
         empleados = MySQL.CargarEmpleados()
         With dtSucursales
