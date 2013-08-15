@@ -36,6 +36,8 @@ Partial Class Opciones
         Me.OK_Button = New System.Windows.Forms.Button()
         Me.LabelVersion = New System.Windows.Forms.Label()
         Me.TextBoxVersion = New System.Windows.Forms.TextBox()
+        Me.LabelHoraInternet = New System.Windows.Forms.Label()
+        Me.ComboBoxHoraInternet = New System.Windows.Forms.ComboBox()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -124,7 +126,7 @@ Partial Class Opciones
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.Cancel_Button, 1, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.OK_Button, 0, 0)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(157, 211)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(157, 230)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
@@ -171,11 +173,34 @@ Partial Class Opciones
         Me.TextBoxVersion.Size = New System.Drawing.Size(149, 26)
         Me.TextBoxVersion.TabIndex = 12
         '
+        'LabelHoraInternet
+        '
+        Me.LabelHoraInternet.AutoSize = True
+        Me.LabelHoraInternet.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelHoraInternet.Location = New System.Drawing.Point(49, 199)
+        Me.LabelHoraInternet.Name = "LabelHoraInternet"
+        Me.LabelHoraInternet.Size = New System.Drawing.Size(108, 20)
+        Me.LabelHoraInternet.TabIndex = 13
+        Me.LabelHoraInternet.Text = "Hora Internet:"
+        '
+        'ComboBoxHoraInternet
+        '
+        Me.ComboBoxHoraInternet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBoxHoraInternet.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ComboBoxHoraInternet.FormattingEnabled = True
+        Me.ComboBoxHoraInternet.Items.AddRange(New Object() {"Activado", "Desactivado"})
+        Me.ComboBoxHoraInternet.Location = New System.Drawing.Point(157, 196)
+        Me.ComboBoxHoraInternet.Name = "ComboBoxHoraInternet"
+        Me.ComboBoxHoraInternet.Size = New System.Drawing.Size(149, 28)
+        Me.ComboBoxHoraInternet.TabIndex = 14
+        '
         'Opciones
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(326, 262)
+        Me.ClientSize = New System.Drawing.Size(326, 281)
+        Me.Controls.Add(Me.ComboBoxHoraInternet)
+        Me.Controls.Add(Me.LabelHoraInternet)
         Me.Controls.Add(Me.TextBoxVersion)
         Me.Controls.Add(Me.LabelVersion)
         Me.Controls.Add(Me.TableLayoutPanel1)
@@ -210,4 +235,6 @@ Partial Class Opciones
     Friend WithEvents OK_Button As System.Windows.Forms.Button
     Friend WithEvents LabelVersion As System.Windows.Forms.Label
     Friend WithEvents TextBoxVersion As System.Windows.Forms.TextBox
+    Friend WithEvents LabelHoraInternet As System.Windows.Forms.Label
+    Friend WithEvents ComboBoxHoraInternet As System.Windows.Forms.ComboBox
 End Class

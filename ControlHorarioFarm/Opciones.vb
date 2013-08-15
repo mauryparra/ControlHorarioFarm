@@ -17,6 +17,12 @@
         If Not My.Settings.Sucursal = "" Then
             ComboBoxSuc.SelectedValue = My.Settings.Sucursal
         End If
+
+        If My.Settings.InternetTime = True Then
+            ComboBoxHoraInternet.SelectedIndex = 0
+        Else
+            ComboBoxHoraInternet.SelectedIndex = 1
+        End If
     End Sub
 
     Private Sub OK_Button_Click(sender As Object, e As EventArgs) Handles OK_Button.Click
@@ -26,6 +32,11 @@
                     If TextBoxNewPass.Text = TextBoxNewPass2.Text Then
                         My.Settings.Contraseña = Encrypt(TextBoxNewPass.Text)
                         My.Settings.Sucursal = ComboBoxSuc.SelectedValue
+                        If ComboBoxHoraInternet.SelectedIndex = 0 Then
+                            My.Settings.InternetTime = True
+                        Else
+                            My.Settings.InternetTime = False
+                        End If
                         My.Settings.Save()
                         Me.Close()
                     Else
@@ -43,6 +54,11 @@
                 If TextBoxNewPass.Text = TextBoxNewPass2.Text Then
                     My.Settings.Contraseña = Encrypt(TextBoxNewPass.Text)
                     My.Settings.Sucursal = ComboBoxSuc.SelectedValue
+                    If ComboBoxHoraInternet.SelectedIndex = 0 Then
+                        My.Settings.InternetTime = True
+                    Else
+                        My.Settings.InternetTime = False
+                    End If
                     My.Settings.Save()
                     Me.Close()
                 Else
@@ -54,6 +70,11 @@
             End If
         Else
             My.Settings.Sucursal = ComboBoxSuc.SelectedValue
+            If ComboBoxHoraInternet.SelectedIndex = 0 Then
+                My.Settings.InternetTime = True
+            Else
+                My.Settings.InternetTime = False
+            End If
             My.Settings.Save()
             Me.Close()
         End If

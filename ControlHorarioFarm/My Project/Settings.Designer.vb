@@ -99,6 +99,18 @@ Namespace My
                 Me("UpgradeRequired") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property InternetTime() As Boolean
+            Get
+                Return CType(Me("InternetTime"),Boolean)
+            End Get
+            Set
+                Me("InternetTime") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

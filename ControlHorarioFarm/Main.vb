@@ -13,6 +13,11 @@
             My.Settings.UpgradeRequired = False
         End If
 
+        If My.Settings.InternetTime Then
+            Me.Text = "Control Horarios Farmacias [INTERNET]"
+        Else
+            Me.Text = "Control Horarios Farmacias [LOCAL]"
+        End If
         ButtonMarcar.Enabled = False
         empleados = MySQL.CargarEmpleados()
         With dtSucursales
@@ -32,7 +37,11 @@
     End Sub
 
     Private Sub Timer_Tick(sender As Object, e As EventArgs) Handles Timer.Tick
-        LabelHora.Text = TimeOfDay.ToString("HH:mm:ss")
+        If My.Settings.InternetTime = False Then
+            LabelHora.Text = TimeOfDay.ToString("HH:mm:ss")
+        Else
+
+        End If
     End Sub
 
     Private Sub ButtonCerrar_Click(sender As Object, e As EventArgs) Handles ButtonCerrar.Click
