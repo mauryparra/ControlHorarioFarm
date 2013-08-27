@@ -1,4 +1,8 @@
-﻿Module Funciones
+﻿Imports System.Net
+
+Module Funciones
+    Private _time As DateTime = New DateTime(1900, 1, 1)
+
     Public Function Encrypt(ByVal pass As String) As String
         Dim EncryptedPass As String = ""
         Dim T, i, R As String
@@ -67,4 +71,18 @@
             dt.Rows.Remove(row)
         Next
     End Sub
+
+    Public Property Time() As DateTime
+        Set(value As DateTime)
+            _time = value
+        End Set
+        Get
+            Return _time.ToString("HH:mm:ss")
+        End Get
+    End Property
+
+    Public Sub incrementTime()
+        Time = Time.AddSeconds(1)
+    End Sub
+
 End Module

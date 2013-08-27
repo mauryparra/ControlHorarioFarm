@@ -1,8 +1,17 @@
-﻿Public Class Main
+﻿Imports sntp
+
+Public Class Main
     Public empleados As New Collection
     Public empleado As New Entidades.Empleados
     Public dtTurnos As New DataTable("Turnos")
     Public dtSucursales As New DataTable("Sucursales")
+
+    Private Sub Main_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        If My.Settings.ChangeTimeMode Then
+            My.Settings.InternetTime = True
+            My.Settings.ChangeTimeMode = False
+        End If
+    End Sub
 
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles Me.Load
         MySQL.testCon()
@@ -12,11 +21,20 @@
             My.Settings.Upgrade()
             My.Settings.UpgradeRequired = False
         End If
-
+        SplitContainer.Panel1.BackColor = Color.White
         If My.Settings.InternetTime Then
             Me.Text = "Control Horarios Farmacias [INTERNET]"
+            Try
+                Funciones.Time = sntp.SntpClient.GetNetworkTime()
+            Catch ex As Exception
+                My.Settings.InternetTime = False
+                My.Settings.ChangeTimeMode = True
+                Throw New TimeoutException("Se agoto el tiempo de conexión a Internet")
+            End Try
+            LabelHora.Text = Funciones.Time
         Else
             Me.Text = "Control Horarios Farmacias [LOCAL]"
+            LabelHora.Text = DateTime.Now.ToString("HH:mm:ss")
         End If
         ButtonMarcar.Enabled = False
         empleados = MySQL.CargarEmpleados()
@@ -37,10 +55,17 @@
     End Sub
 
     Private Sub Timer_Tick(sender As Object, e As EventArgs) Handles Timer.Tick
-        If My.Settings.InternetTime = False Then
-            LabelHora.Text = TimeOfDay.ToString("HH:mm:ss")
+        If My.Settings.InternetTime Then
+            Funciones.incrementTime()
+            If Not Me.Text = "Control Horarios Farmacias [INTERNET]" Then
+                Me.Text = "Control Horarios Farmacias [INTERNET]"
+            End If
+            LabelHora.Text = Funciones.Time
         Else
-
+            If Not Me.Text = "Control Horarios Farmacias [LOCAL]" Then
+                Me.Text = "Control Horarios Farmacias [LOCAL]"
+            End If
+            LabelHora.Text = TimeOfDay.ToString("HH:mm:ss")
         End If
     End Sub
 
@@ -51,6 +76,7 @@
     Private Sub TextBoxNombre_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBoxNombre.KeyDown
         If e.KeyCode = Keys.Enter Then
             Dim seleccion As New SelectEmpleado
+
             With seleccion
                 .Location = New Point(25, 2)
             End With
@@ -86,28 +112,35 @@
                 If DataGridViewReg.Rows.Count > 0 Then
                     If DataGridViewReg.Rows(0).Cells(0).Value = "Entrada" Then
                         ComboBoxTipo.SelectedItem = "Salida"
-                        Me.BackColor = Color.IndianRed
+                        ButtonMarcar.Text = "&Salida"
+                        SplitContainer.Panel1.BackColor = Color.IndianRed
                         MySQL.cargarTurnos(DataGridViewReg.Rows(0).Cells(4).Value)
                         ComboBoxTurnos.SelectedIndex = 0
 
                         If Funciones.CheckSalida(DataGridViewReg) = True Then
                             MySQL.cargarHistorial(DataGridViewReg)    ' Si cerro automaticamente
                             ComboBoxTipo.SelectedItem = "Entrada"
-                            Me.BackColor = Color.Aquamarine
+                            ButtonMarcar.Text = "&Entrada"
+                            SplitContainer.Panel1.BackColor = Color.Aquamarine
                             MySQL.cargarTurnos()
                             Funciones.filtrarTurnos(dtTurnos)
+                            ComboBoxTurnos.SelectedIndex = -1
                         End If
                     Else
                         ComboBoxTipo.SelectedItem = "Entrada"
-                        Me.BackColor = Color.Aquamarine
+                        ButtonMarcar.Text = "&Entrada"
+                        SplitContainer.Panel1.BackColor = Color.Aquamarine
                         MySQL.cargarTurnos()
                         Funciones.filtrarTurnos(dtTurnos)
+                        ComboBoxTurnos.SelectedIndex = -1
                     End If
                 Else
                     ComboBoxTipo.SelectedItem = "Entrada"
-                    Me.BackColor = Color.Aquamarine
+                    ButtonMarcar.Text = "&Entrada"
+                    SplitContainer.Panel1.BackColor = Color.Aquamarine
                     MySQL.cargarTurnos()
                     Funciones.filtrarTurnos(dtTurnos)
+                    ComboBoxTurnos.SelectedIndex = -1
                 End If
                 ButtonMarcar.Enabled = True
                 ButtonMarcar.Focus()
@@ -123,10 +156,27 @@
         TextBoxPass.Clear()
         TextBoxPass.Enabled = True
         ButtonMarcar.Enabled = False
+        ButtonMarcar.Text = "&Marcar"
+        ComboBoxTipo.SelectedIndex = -1
+        ComboBoxTurnos.SelectedIndex = -1
+        DataGridViewReg.Rows.Clear()
+        SplitContainer.Panel1.BackColor = Color.White
     End Sub
 
     Private Sub ButtonMarcar_Click(sender As Object, e As EventArgs) Handles ButtonMarcar.Click
         MySQL.marcarHorario()
+        Me.ClearForm()
+        TextBoxNombre.Focus()
+    End Sub
 
+    Private Sub ClearForm()
+        TextBoxNombre.Clear()
+        TextBoxPass.Clear()
+        ComboBoxTipo.ResetText()
+        ComboBoxTurnos.ResetText()
+        DataGridViewReg.Rows.Clear()
+        ButtonMarcar.Text = "&Marcar"
+        ButtonMarcar.Enabled = False
+        SplitContainer.Panel1.BackColor = Color.White
     End Sub
 End Class

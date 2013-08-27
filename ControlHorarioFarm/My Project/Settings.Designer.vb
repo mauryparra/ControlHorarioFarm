@@ -102,13 +102,25 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
         Public Property InternetTime() As Boolean
             Get
                 Return CType(Me("InternetTime"),Boolean)
             End Get
             Set
                 Me("InternetTime") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property ChangeTimeMode() As Boolean
+            Get
+                Return CType(Me("ChangeTimeMode"),Boolean)
+            End Get
+            Set
+                Me("ChangeTimeMode") = value
             End Set
         End Property
     End Class

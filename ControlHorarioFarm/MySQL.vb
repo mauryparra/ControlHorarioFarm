@@ -174,7 +174,6 @@ Module MySQL
             com.ExecuteNonQuery()
             con.Close()
             MessageBox.Show(Main.ComboBoxTipo.SelectedItem + " Registrada!")
-            Application.Exit()
 
         Catch ex As Exception
             MessageBox.Show(ex.Message)
