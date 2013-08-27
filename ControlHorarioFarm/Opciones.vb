@@ -23,6 +23,7 @@
         Else
             ComboBoxHoraInternet.SelectedIndex = 1
         End If
+        MaskedTextBoxConex.Text = My.Settings.ConnectionString
     End Sub
 
     Private Sub OK_Button_Click(sender As Object, e As EventArgs) Handles OK_Button.Click
@@ -37,6 +38,7 @@
                         Else
                             My.Settings.InternetTime = False
                         End If
+                        My.Settings.ConnectionString = MaskedTextBoxConex.Text.Trim()
                         My.Settings.Save()
                         Me.Close()
                     Else
@@ -59,6 +61,7 @@
                     Else
                         My.Settings.InternetTime = False
                     End If
+                    My.Settings.ConnectionString = MaskedTextBoxConex.Text.Trim()
                     My.Settings.Save()
                     Me.Close()
                 Else
@@ -75,6 +78,7 @@
             Else
                 My.Settings.InternetTime = False
             End If
+            My.Settings.ConnectionString = MaskedTextBoxConex.Text.Trim()
             My.Settings.Save()
             Me.Close()
         End If

@@ -61,6 +61,7 @@ Partial Class Main
         '
         'SplitContainer.Panel1
         '
+        Me.SplitContainer.Panel1.BackColor = System.Drawing.Color.White
         Me.SplitContainer.Panel1.Controls.Add(Me.LabelTipo)
         Me.SplitContainer.Panel1.Controls.Add(Me.ComboBoxTipo)
         Me.SplitContainer.Panel1.Controls.Add(Me.TextBoxPass)

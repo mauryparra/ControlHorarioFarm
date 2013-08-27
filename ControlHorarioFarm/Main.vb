@@ -21,7 +21,6 @@ Public Class Main
             My.Settings.Upgrade()
             My.Settings.UpgradeRequired = False
         End If
-        SplitContainer.Panel1.BackColor = Color.White
         If My.Settings.InternetTime Then
             Me.Text = "Control Horarios Farmacias [INTERNET]"
             Try
@@ -88,7 +87,7 @@ Public Class Main
 
     Private Sub ButtonConfig_Click(sender As Object, e As EventArgs) Handles ButtonConfig.Click
         If My.Settings.Contraseña = "" Then
-            MessageBox.Show("Por favor configure una contraseña")
+            MessageBox.Show("Por favor configure una contraseña", "Control de Horarios", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Opciones.TextBoxActualPass.Enabled = False
             Opciones.ShowDialog()
         Else
@@ -112,32 +111,24 @@ Public Class Main
                 If DataGridViewReg.Rows.Count > 0 Then
                     If DataGridViewReg.Rows(0).Cells(0).Value = "Entrada" Then
                         ComboBoxTipo.SelectedItem = "Salida"
-                        ButtonMarcar.Text = "&Salida"
-                        SplitContainer.Panel1.BackColor = Color.IndianRed
                         MySQL.cargarTurnos(DataGridViewReg.Rows(0).Cells(4).Value)
                         ComboBoxTurnos.SelectedIndex = 0
 
                         If Funciones.CheckSalida(DataGridViewReg) = True Then
                             MySQL.cargarHistorial(DataGridViewReg)    ' Si cerro automaticamente
                             ComboBoxTipo.SelectedItem = "Entrada"
-                            ButtonMarcar.Text = "&Entrada"
-                            SplitContainer.Panel1.BackColor = Color.Aquamarine
                             MySQL.cargarTurnos()
                             Funciones.filtrarTurnos(dtTurnos)
                             ComboBoxTurnos.SelectedIndex = -1
                         End If
                     Else
                         ComboBoxTipo.SelectedItem = "Entrada"
-                        ButtonMarcar.Text = "&Entrada"
-                        SplitContainer.Panel1.BackColor = Color.Aquamarine
                         MySQL.cargarTurnos()
                         Funciones.filtrarTurnos(dtTurnos)
                         ComboBoxTurnos.SelectedIndex = -1
                     End If
                 Else
                     ComboBoxTipo.SelectedItem = "Entrada"
-                    ButtonMarcar.Text = "&Entrada"
-                    SplitContainer.Panel1.BackColor = Color.Aquamarine
                     MySQL.cargarTurnos()
                     Funciones.filtrarTurnos(dtTurnos)
                     ComboBoxTurnos.SelectedIndex = -1
@@ -145,7 +136,7 @@ Public Class Main
                 ButtonMarcar.Enabled = True
                 ButtonMarcar.Focus()
             Else
-                MessageBox.Show("Contraseña incorrecta")
+                MessageBox.Show("Contraseña incorrecta", "Control de Horarios", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 TextBoxPass.Clear()
                 TextBoxPass.Focus()
             End If
@@ -156,17 +147,25 @@ Public Class Main
         TextBoxPass.Clear()
         TextBoxPass.Enabled = True
         ButtonMarcar.Enabled = False
-        ButtonMarcar.Text = "&Marcar"
         ComboBoxTipo.SelectedIndex = -1
         ComboBoxTurnos.SelectedIndex = -1
         DataGridViewReg.Rows.Clear()
-        SplitContainer.Panel1.BackColor = Color.White
     End Sub
 
     Private Sub ButtonMarcar_Click(sender As Object, e As EventArgs) Handles ButtonMarcar.Click
-        MySQL.marcarHorario()
-        Me.ClearForm()
-        TextBoxNombre.Focus()
+        If Not ComboBoxTurnos.SelectedIndex = -1 Then
+            If Not ComboBoxTipo.SelectedIndex = -1 Then
+                MySQL.marcarHorario()
+                Me.ClearForm()
+                TextBoxNombre.Focus()
+            Else
+                MessageBox.Show("Debe seleccionar ENTRADA O SALIDA!", "Control de Horarios", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                ComboBoxTipo.Focus()
+            End If
+        Else
+            MessageBox.Show("Debe seleccionar el TURNO!", "Control de Horarios", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            ComboBoxTurnos.Focus()
+        End If
     End Sub
 
     Private Sub ClearForm()
@@ -175,8 +174,19 @@ Public Class Main
         ComboBoxTipo.ResetText()
         ComboBoxTurnos.ResetText()
         DataGridViewReg.Rows.Clear()
-        ButtonMarcar.Text = "&Marcar"
         ButtonMarcar.Enabled = False
-        SplitContainer.Panel1.BackColor = Color.White
+    End Sub
+
+    Private Sub ComboBoxTipo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxTipo.SelectedIndexChanged
+        If ComboBoxTipo.SelectedItem = "Entrada" Then
+            SplitContainer.Panel1.BackColor = Color.Aquamarine
+            ButtonMarcar.Text = "&Entrada"
+        ElseIf ComboBoxTipo.SelectedItem = "Salida" Then
+            SplitContainer.Panel1.BackColor = Color.IndianRed
+            ButtonMarcar.Text = "&Salida"
+        Else
+            SplitContainer.Panel1.BackColor = Color.White
+            ButtonMarcar.Text = "&Marcar"
+        End If
     End Sub
 End Class

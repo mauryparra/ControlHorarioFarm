@@ -38,6 +38,8 @@ Partial Class Opciones
         Me.TextBoxVersion = New System.Windows.Forms.TextBox()
         Me.LabelHoraInternet = New System.Windows.Forms.Label()
         Me.ComboBoxHoraInternet = New System.Windows.Forms.ComboBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.MaskedTextBoxConex = New System.Windows.Forms.MaskedTextBox()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -126,12 +128,12 @@ Partial Class Opciones
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.Cancel_Button, 1, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.OK_Button, 0, 0)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(157, 230)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(157, 270)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(162, 39)
-        Me.TableLayoutPanel1.TabIndex = 10
+        Me.TableLayoutPanel1.TabIndex = 12
         '
         'Cancel_Button
         '
@@ -171,7 +173,8 @@ Partial Class Opciones
         Me.TextBoxVersion.Name = "TextBoxVersion"
         Me.TextBoxVersion.ReadOnly = True
         Me.TextBoxVersion.Size = New System.Drawing.Size(149, 26)
-        Me.TextBoxVersion.TabIndex = 12
+        Me.TextBoxVersion.TabIndex = 13
+        Me.TextBoxVersion.TabStop = False
         '
         'LabelHoraInternet
         '
@@ -180,7 +183,7 @@ Partial Class Opciones
         Me.LabelHoraInternet.Location = New System.Drawing.Point(49, 199)
         Me.LabelHoraInternet.Name = "LabelHoraInternet"
         Me.LabelHoraInternet.Size = New System.Drawing.Size(108, 20)
-        Me.LabelHoraInternet.TabIndex = 13
+        Me.LabelHoraInternet.TabIndex = 14
         Me.LabelHoraInternet.Text = "Hora Internet:"
         '
         'ComboBoxHoraInternet
@@ -192,13 +195,34 @@ Partial Class Opciones
         Me.ComboBoxHoraInternet.Location = New System.Drawing.Point(157, 196)
         Me.ComboBoxHoraInternet.Name = "ComboBoxHoraInternet"
         Me.ComboBoxHoraInternet.Size = New System.Drawing.Size(149, 28)
-        Me.ComboBoxHoraInternet.TabIndex = 14
+        Me.ComboBoxHoraInternet.TabIndex = 10
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(45, 235)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(106, 20)
+        Me.Label1.TabIndex = 15
+        Me.Label1.Text = "Conexíon BD:"
+        '
+        'MaskedTextBoxConex
+        '
+        Me.MaskedTextBoxConex.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MaskedTextBoxConex.Location = New System.Drawing.Point(157, 232)
+        Me.MaskedTextBoxConex.Mask = "DSN=&&&&&&&&&&&&&"
+        Me.MaskedTextBoxConex.Name = "MaskedTextBoxConex"
+        Me.MaskedTextBoxConex.Size = New System.Drawing.Size(149, 26)
+        Me.MaskedTextBoxConex.TabIndex = 11
         '
         'Opciones
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(326, 281)
+        Me.ClientSize = New System.Drawing.Size(326, 321)
+        Me.Controls.Add(Me.MaskedTextBoxConex)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.ComboBoxHoraInternet)
         Me.Controls.Add(Me.LabelHoraInternet)
         Me.Controls.Add(Me.TextBoxVersion)
@@ -237,4 +261,6 @@ Partial Class Opciones
     Friend WithEvents TextBoxVersion As System.Windows.Forms.TextBox
     Friend WithEvents LabelHoraInternet As System.Windows.Forms.Label
     Friend WithEvents ComboBoxHoraInternet As System.Windows.Forms.ComboBox
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents MaskedTextBoxConex As System.Windows.Forms.MaskedTextBox
 End Class

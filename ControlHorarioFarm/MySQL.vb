@@ -1,6 +1,6 @@
 ﻿Imports System.Data.Odbc
 Module MySQL
-    Private con As New OdbcConnection("DSN=Horarios")
+    Private con As New OdbcConnection(My.Settings.ConnectionString)
     Private com As OdbcCommand
     Private dr As OdbcDataReader
 
@@ -24,11 +24,11 @@ Module MySQL
                     empleados.Add(empleado, empleado.ID) 'Agrega empleado a la colección
                 Loop
             Else
-                MessageBox.Show("No se econtraron empleados")
+                MessageBox.Show("No se econtraron empleados", "Control de Horarios", 0, MessageBoxIcon.Error)
             End If
             Return empleados
         Catch ex As Exception
-            MessageBox.Show(ex.Message)
+            MessageBox.Show(ex.Message, "Control de Horarios", 0, MessageBoxIcon.Error)
         Finally
             If con.State = ConnectionState.Open Then
                 con.Close()
@@ -55,10 +55,10 @@ Module MySQL
                     Main.dtSucursales.Rows.Add(row) 'Agrega sucursal al datatable
                 Loop
             Else
-                MessageBox.Show("No se econtraron Sucursales")
+                MessageBox.Show("No se econtraron Sucursales", "Control de Horarios", 0, MessageBoxIcon.Stop)
             End If
         Catch ex As Exception
-            MessageBox.Show(ex.Message)
+            MessageBox.Show(ex.Message, "Control de Horarios", 0, MessageBoxIcon.Error)
         Finally
             If con.State = ConnectionState.Open Then
                 con.Close()
@@ -102,10 +102,10 @@ Module MySQL
                     dgv.Rows.Add(row)
                 Loop
             Else
-                MessageBox.Show("No se econtraron registros anteriores")
+                MessageBox.Show("No se econtraron registros anteriores", "Control de Horarios", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         Catch ex As Exception
-            MessageBox.Show(ex.Message)
+            MessageBox.Show(ex.Message, "Control de Horarios", 0, MessageBoxIcon.Error)
         Finally
             If con.State = ConnectionState.Open Then
                 con.Close()
@@ -143,10 +143,10 @@ Module MySQL
                     Main.dtTurnos.Rows.Add(row) 'Agrega turno al datatable
                 Loop
             Else
-                MessageBox.Show("No se econtraron Turnos")
+                MessageBox.Show("No se econtraron Turnos", "Control de Horarios", MessageBoxButtons.OK, MessageBoxIcon.Stop)
             End If
         Catch ex As Exception
-            MessageBox.Show(ex.Message)
+            MessageBox.Show(ex.Message, "Control de Horarios", 0, MessageBoxIcon.Error)
         Finally
             If con.State = ConnectionState.Open Then
                 con.Close()
@@ -173,10 +173,10 @@ Module MySQL
             con.Open()
             com.ExecuteNonQuery()
             con.Close()
-            MessageBox.Show(Main.ComboBoxTipo.SelectedItem + " Registrada!")
+            MessageBox.Show(Main.ComboBoxTipo.SelectedItem + " Registrada!", "Control de Horarios", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
         Catch ex As Exception
-            MessageBox.Show(ex.Message)
+            MessageBox.Show(ex.Message, "Control de Horarios", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             If con.State = ConnectionState.Open Then
                 con.Close()
@@ -203,9 +203,9 @@ Module MySQL
             con.Open()
             com.ExecuteNonQuery()
             con.Close()
-            MessageBox.Show("Turno Cerrado Automaticamente!")
+            MessageBox.Show("Turno Cerrado Automaticamente!", "Control de Horarios", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Catch ex As Exception
-            MessageBox.Show(ex.Message)
+            MessageBox.Show(ex.Message, "Control de Horarios", 0, MessageBoxIcon.Error)
         Finally
             If con.State = ConnectionState.Open Then
                 con.Close()
@@ -218,7 +218,7 @@ Module MySQL
             con.Open()
             con.Close()
         Catch ex As Exception
-            MessageBox.Show("No se puede conectar con la Base de Datos. " & ex.Message)
+            MessageBox.Show("No se puede conectar con la Base de Datos. " & ex.Message, "Control de Horarios", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             con.Close()
         End Try

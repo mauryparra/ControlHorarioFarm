@@ -54,14 +54,16 @@ Namespace My
             End Get
         End Property
         
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Dsn=Horarios")>  _
-        Public ReadOnly Property ConnectionString() As String
+         Global.System.Configuration.DefaultSettingValueAttribute("DSN=Horarios")>  _
+        Public Property ConnectionString() As String
             Get
                 Return CType(Me("ConnectionString"),String)
             End Get
+            Set
+                Me("ConnectionString") = value
+            End Set
         End Property
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
