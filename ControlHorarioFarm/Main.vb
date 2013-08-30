@@ -28,7 +28,8 @@ Public Class Main
             Catch ex As Exception
                 My.Settings.InternetTime = False
                 My.Settings.ChangeTimeMode = True
-                Throw New TimeoutException("Se agoto el tiempo de conexión a Internet")
+                MessageBox.Show("No se pudo recuperar la hora desde internet. Cambiando a modo: LOCAL", "Control de Horarios", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Throw New TimeoutException("No se recibio respuesta desde servidor SNTP.")
             End Try
             LabelHora.Text = Funciones.Time
         Else

@@ -160,7 +160,11 @@ Module MySQL
                                   "VALUES ( ?, ?, ?, ?, ?, ?, ? ) ", con)
             com.Parameters.AddWithValue("id_op", Main.empleado.ID)
             com.Parameters.AddWithValue("turno", Main.ComboBoxTurnos.SelectedValue)
-            com.Parameters.AddWithValue("fechah", System.DateTime.Now)
+            If My.Settings.InternetTime Then
+                com.Parameters.AddWithValue("fechah", Funciones.Time)
+            Else
+                com.Parameters.AddWithValue("fechah", System.DateTime.Now)
+            End If
             com.Parameters.AddWithValue("tipo", Main.ComboBoxTipo.SelectedIndex + 1)
 
             ' Obtener id_suc del datatable a partir del turno seleccionado
@@ -219,6 +223,7 @@ Module MySQL
             con.Close()
         Catch ex As Exception
             MessageBox.Show("No se puede conectar con la Base de Datos. " & ex.Message, "Control de Horarios", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Application.Exit()
         Finally
             con.Close()
         End Try
