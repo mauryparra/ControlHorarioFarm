@@ -21,21 +21,6 @@ Public Class Main
             My.Settings.Upgrade()
             My.Settings.UpgradeRequired = False
         End If
-        If My.Settings.InternetTime Then
-            Me.Text = "Control Horarios Farmacias [INTERNET]"
-            Try
-                Funciones.Time = sntp.SntpClient.GetNetworkTime()
-            Catch ex As Exception
-                My.Settings.InternetTime = False
-                My.Settings.ChangeTimeMode = True
-                MessageBox.Show("No se pudo recuperar la hora desde internet. Cambiando a modo: LOCAL", "Control de Horarios", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                Throw New TimeoutException("No se recibio respuesta desde servidor SNTP.")
-            End Try
-            LabelHora.Text = Funciones.Time
-        Else
-            Me.Text = "Control Horarios Farmacias [LOCAL]"
-            LabelHora.Text = DateTime.Now.ToString("HH:mm:ss")
-        End If
         ButtonMarcar.Enabled = False
         empleados = MySQL.CargarEmpleados()
         With dtSucursales
@@ -52,6 +37,21 @@ Public Class Main
             .Columns.Add("Salida")
             .Columns.Add("CantHoras")
         End With
+        If My.Settings.InternetTime Then
+            Me.Text = "Control Horarios Farmacias [INTERNET]"
+            Try
+                Funciones.internetTime = sntp.SntpClient.GetNetworkTime()
+            Catch ex As Exception
+                My.Settings.InternetTime = False
+                My.Settings.ChangeTimeMode = True
+                MessageBox.Show("No se pudo recuperar la hora desde internet. Cambiando a modo: LOCAL", "Control de Horarios", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Throw New TimeoutException("No se recibio respuesta desde servidor SNTP.")
+            End Try
+            LabelHora.Text = Funciones.internetTime.ToString("HH:mm:ss")
+        Else
+            Me.Text = "Control Horarios Farmacias [LOCAL]"
+            LabelHora.Text = DateTime.Now.ToString("HH:mm:ss")
+        End If
     End Sub
 
     Private Sub Timer_Tick(sender As Object, e As EventArgs) Handles Timer.Tick
@@ -60,7 +60,7 @@ Public Class Main
             If Not Me.Text = "Control Horarios Farmacias [INTERNET]" Then
                 Me.Text = "Control Horarios Farmacias [INTERNET]"
             End If
-            LabelHora.Text = Funciones.Time
+            LabelHora.Text = Funciones.internetTime.ToString("HH:mm:ss")
         Else
             If Not Me.Text = "Control Horarios Farmacias [LOCAL]" Then
                 Me.Text = "Control Horarios Farmacias [LOCAL]"

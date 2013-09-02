@@ -161,7 +161,7 @@ Module MySQL
             com.Parameters.AddWithValue("id_op", Main.empleado.ID)
             com.Parameters.AddWithValue("turno", Main.ComboBoxTurnos.SelectedValue)
             If My.Settings.InternetTime Then
-                com.Parameters.AddWithValue("fechah", Funciones.Time)
+                com.Parameters.AddWithValue("fechah", Funciones.internetTime)
             Else
                 com.Parameters.AddWithValue("fechah", System.DateTime.Now)
             End If
@@ -170,7 +170,7 @@ Module MySQL
             ' Obtener id_suc del datatable a partir del turno seleccionado
             Dim rowIndex As Integer
             rowIndex = Main.ComboBoxTurnos.SelectedIndex
-            com.Parameters.AddWithValue("id_suc", Main.dtTurnos.DefaultView.Item(rowIndex).Item(0))
+            com.Parameters.AddWithValue("id_suc", My.Settings.Sucursal)
             com.Parameters.AddWithValue("id_estado", 1) ' VER
             com.Parameters.AddWithValue("observacion", "CHF v" & My.Application.Info.Version.ToString)
 

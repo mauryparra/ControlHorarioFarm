@@ -1,7 +1,7 @@
 ﻿Imports System.Net
 
 Module Funciones
-    Private _time As DateTime = New DateTime(1900, 1, 1)
+    Private _internetTime As DateTime = New DateTime(1900, 1, 1)
 
     Public Function Encrypt(ByVal pass As String) As String
         Dim EncryptedPass As String = ""
@@ -72,17 +72,17 @@ Module Funciones
         Next
     End Sub
 
-    Public Property Time() As DateTime
+    Public Property internetTime() As DateTime
         Set(value As DateTime)
-            _time = value
+            _internetTime = value
         End Set
         Get
-            Return _time.ToString("HH:mm:ss")
+            Return _internetTime
         End Get
     End Property
 
     Public Sub incrementTime()
-        Time = Time.AddSeconds(1)
+        internetTime = internetTime.AddSeconds(1)
     End Sub
 
 End Module
