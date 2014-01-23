@@ -5,6 +5,7 @@ Public Class Main
     Public empleado As New Entidades.Empleados
     Public dtTurnos As New DataTable("Turnos")
     Public dtSucursales As New DataTable("Sucursales")
+    Private updateTimeAux As Integer = 0
 
     Private Sub Main_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         If My.Settings.ChangeTimeMode Then
@@ -39,14 +40,14 @@ Public Class Main
         End With
         If My.Settings.InternetTime Then
             Me.Text = "Control Horarios Farmacias [INTERNET]"
-            Try
-                Funciones.internetTime = sntp.SntpClient.GetNetworkTime()
-            Catch ex As Exception
+            Funciones.internetTime = sntp.SntpClient.GetNetworkTime()
+
+            If Date.Compare(Funciones.internetTime, Date.Parse("1900/01/01")) = 0 Then
                 My.Settings.InternetTime = False
                 My.Settings.ChangeTimeMode = True
                 MessageBox.Show("No se pudo recuperar la hora desde internet. Cambiando a modo: LOCAL", "Control de Horarios", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                Throw New TimeoutException("No se recibio respuesta desde servidor SNTP.")
-            End Try
+            End If
+
             LabelHora.Text = Funciones.internetTime.ToString("HH:mm:ss")
         Else
             Me.Text = "Control Horarios Farmacias [LOCAL]"
@@ -57,6 +58,15 @@ Public Class Main
     Private Sub Timer_Tick(sender As Object, e As EventArgs) Handles Timer.Tick
         If My.Settings.InternetTime Then
             Funciones.incrementTime()
+            updateTimeAux += 1
+            If updateTimeAux = 600 Or Funciones.internetTime < Date.Parse("2000/01/01") Then
+                Dim newTime As DateTime
+                updateTimeAux = 0
+                newTime = sntp.SntpClient.GetNetworkTime()
+                If Date.Compare(newTime, Date.Parse("1900/01/01")) > 0 Then
+                    Funciones.internetTime = newTime
+                End If
+            End If
             If Not Me.Text = "Control Horarios Farmacias [INTERNET]" Then
                 Me.Text = "Control Horarios Farmacias [INTERNET]"
             End If
